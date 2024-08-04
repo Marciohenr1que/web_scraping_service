@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package notification;
+
+message WebscrapingNotificationRequest {
+  string message = 1;
+}
+
+message NotificationResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+service NotificationService {
+  rpc SendWebscrapingNotification (WebscrapingNotificationRequest) returns (NotificationResponse);
+}

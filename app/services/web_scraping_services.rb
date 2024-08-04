@@ -1,12 +1,14 @@
 require 'selenium-webdriver'
 require 'nokogiri'
-require 'faker'
+require 'grpc'
+require_relative '../../lib/notification_services_pb'
 
 class WebScrapingServices
   GOOGLEBOT_USER_AGENT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 
-  def initialize(scraped_data_repository, html_parser = Nokogiri::HTML)
+  def initialize(scraped_data_repository, notification_client, html_parser = Nokogiri::HTML)
     @scraped_data_repository = scraped_data_repository
+    @notification_client = notification_client
     @html_parser = html_parser
   end
 
@@ -33,7 +35,7 @@ class WebScrapingServices
     human_like_interactions(driver)
 
     # tempo de espera
-    wait = Selenium::WebDriver::Wait.new(timeout: 1)
+    wait = Selenium::WebDriver::Wait.new(timeout: 10)
     wait.until { driver.title.length > 0 }
 
     html_doc = @html_parser.parse(driver.page_source)
@@ -54,7 +56,7 @@ class WebScrapingServices
       url: url
     }
 
-    #  debug
+    # debug
     Rails.logger.debug "Brand: #{brand}"
     Rails.logger.debug "Model: #{model}"
     Rails.logger.debug "Price: #{price}"
@@ -64,11 +66,29 @@ class WebScrapingServices
       Rails.logger.debug "Data is missing: #{data.inspect}"
     else
       @scraped_data_repository.create(data)
+      notify("Web scraping completed successfully for URL: #{url}")
     end
 
     driver.quit
   end
+
+  private
+
+  def notify(message)
+    request = Notification::WebscrapingNotificationRequest.new(message: message)
+    response = @notification_client.send_webscraping_notification(request)
+    if response.success
+      Rails.logger.debug "Notification sent successfully"
+    else
+      Rails.logger.error "Failed to send notification"
+    end
+  end
 end
+
+# notification_client
+notification_stub = Notification::NotificationService::Stub.new('localhost:50052', :this_channel_is_insecure)
+scraped_data_repository = ScrapedDataRepository.new
+web_scraping_service = WebScrapingServices.new(scraped_data_repository, notification_stub)
 
 
 
