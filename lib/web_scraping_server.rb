@@ -1,11 +1,10 @@
 require 'grpc'
 require_relative '../lib/web_scraping_services_pb'
-require_relative '../app/services/web_scraping_service'
+# require_relative '../app/services/web_scraping_service'
 class WebScrapingServiceServer < Webscraping::WebScrapingService::Service
-  def initialize
-    repository = ScrapedDataRepository.new
-    notification_client = Webscraping::WebScrapingService::Stub.new('localhost:50053', :this_channel_is_insecure)
-    @service = WebScrapingService.new(scraped_data_repository)
+  def initialize(scraped_data_repository, notification_client)
+    @scraped_data_repository = scraped_data_repository
+    @notification_client = notification_client
   end
 
   def scrape_data(scrape_request, _unused_call)

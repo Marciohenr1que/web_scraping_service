@@ -1,9 +1,9 @@
 class ScrapedDataRepository
-    def create(data)
-      ScrapedData.create!(data)
-    end
-  
-    def all
-      ScrapedData.all
-    end
+  def create(data)
+    ScrapedDatum.create!(data)
   end
+  
+  def all
+    ScrapedDatum.all
+  end
+end

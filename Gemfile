@@ -7,12 +7,14 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 gem 'grpc'
 gem 'faraday'
 gem 'nokogiri'
+gem 'selenium-webdriver'
+gem 'browsermob-proxy'
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
-
+gem 'faker'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
