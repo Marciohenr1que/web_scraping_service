@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package webscraping;
+
+service WebScrapingService {
+  rpc ScrapeData (ScrapeRequest) returns (ScrapeResponse) {}
+}
+
+message ScrapeRequest {
+  string url = 1;
+}
+
+message ScrapeResponse {
+  bool success = 1;
+  string message = 2;
+}
