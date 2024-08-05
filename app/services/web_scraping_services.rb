@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'grpc'
 require_relative '../../lib/notification_services_pb'
 
+
 class WebScrapingServices
   GOOGLEBOT_USER_AGENT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 

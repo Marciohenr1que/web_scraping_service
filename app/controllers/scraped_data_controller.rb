@@ -1,5 +1,9 @@
 require_relative '../../lib/notification_services_pb'
 class ScrapedDataController < ApplicationController
+
+  def index
+    render json: ScrapedDataRepository.new.all
+  end
   def scrape
     repository = ScrapedDataRepository.new
     
