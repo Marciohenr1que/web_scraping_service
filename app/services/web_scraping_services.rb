@@ -1,9 +1,3 @@
-require 'selenium-webdriver'
-require 'nokogiri'
-require 'grpc'
-require_relative '../../lib/notification_services_pb'
-
-
 class WebScrapingServices
   GOOGLEBOT_USER_AGENT = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 
@@ -23,7 +17,7 @@ class WebScrapingServices
     sleep random_wait_time
   end
 
-  def scrape_data(url)
+  def scrape_data(url, user_id)
     options = Selenium::WebDriver::Chrome::Options.new
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
@@ -54,7 +48,8 @@ class WebScrapingServices
       brand: brand,
       model: model,
       price: price,
-      url: url
+      url: url,
+      user_id: user_id
     }
 
     # debug
@@ -85,11 +80,5 @@ class WebScrapingServices
     end
   end
 end
-
-# notification_client
-notification_stub = Notification::NotificationService::Stub.new('localhost:50052', :this_channel_is_insecure)
-scraped_data_repository = ScrapedDataRepository.new
-web_scraping_service = WebScrapingServices.new(scraped_data_repository, notification_stub)
-
 
 

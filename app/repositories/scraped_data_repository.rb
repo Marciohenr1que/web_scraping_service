@@ -2,8 +2,8 @@ class ScrapedDataRepository
   def create(data)
     ScrapedDatum.create!(data)
   end
-  
-  def all
-    ScrapedDatum.all
+
+  def all(user_id)
+    ScrapedDatum.where(user_id: user_id)
   end
 end

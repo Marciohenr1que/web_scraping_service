@@ -1,9 +1,11 @@
 require_relative '../../lib/notification_services_pb'
-class ScrapedDataController < ApplicationController
 
+class ScrapedDataController < ApplicationController
   def index
-    render json: ScrapedDataRepository.new.all
+    user_id = request.headers['X-User-Id']
+    render json: ScrapedDataRepository.new.all(user_id)
   end
+
   def scrape
     repository = ScrapedDataRepository.new
     
@@ -13,11 +15,13 @@ class ScrapedDataController < ApplicationController
     scraping_service = WebScrapingServices.new(repository, notification_stub)
     
     url = params[:url]
-    if url.present?
-      scraping_service.scrape_data(url)
+    user_id = request.headers['X-User-Id']
+
+    if url.present? && user_id.present?
+      scraping_service.scrape_data(url, user_id)
       render json: { message: 'Scraping initiated successfully' }, status: :ok
     else
-      render json: { error: 'URL parameter is required' }, status: :bad_request
+      render json: { error: 'URL and User ID parameters are required' }, status: :bad_request
     end
   end
 end
