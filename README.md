@@ -3,9 +3,10 @@
 Este projeto é uma aplicação de web scraping desenvolvida em Ruby on Rails. Utiliza Selenium e Nokogiri para realizar scraping de dados de páginas da web e armazena as informações em um banco de dados PostgreSQL. O projeto segue a arquitetura hexagonal, com comunicação via gRPC e é executado dentro de um contêiner Docker.
 
 Comando principal 
-bundle install
+- bundle install
 rodar 
-rails s -p 3001 ***lembrando que que apontado para front-end na ação de post verificar cors tambem 
+- rails s -p 3001 
+- lembrando que que apontado para front-end na ação de post verificar cors tambem 
 
 ## Visão Geral
 
