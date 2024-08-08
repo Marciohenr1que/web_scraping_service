@@ -6,7 +6,7 @@ Comando principal
 - bundle install
 - Rodar
 - rails s -p 3001 
-- lembrando que que apontado para front-end na ação de post verificar cors tambem 
+- lembrando verificar cors  ele aceita requisiçoes vindas do origins 'http://localhost:5173' front-end
 
 ## Visão Geral
 
