@@ -4,6 +4,6 @@ class ScrapedDataRepository
   end
 
   def all(user_id)
-    ScrapedDatum.where(user_id: user_id)
+    ScrapedDatum.where(user_id:)
   end
 end
