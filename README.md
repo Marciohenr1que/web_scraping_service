@@ -4,7 +4,7 @@ Este projeto é uma aplicação de web scraping desenvolvida em Ruby on Rails. U
 
 Comando principal 
 - bundle install
-rodar 
+- Rodar
 - rails s -p 3001 
 - lembrando que que apontado para front-end na ação de post verificar cors tambem 
 
