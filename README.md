@@ -39,7 +39,7 @@ A aplicação é projetada para:
 ### Clonando o Repositório
 
 ```bash
-git clone git clone https://github.com/seu_usuario/seu_repositorio.git
+git clone git clone https://github.com/seu_usuario/seu_repositorio.git](https://github.com/Marciohenr1que/web_scraping_service
 cd seu_repositorio
 Configuração do Ambiente
 Instale as dependências do Ruby:
@@ -58,7 +58,7 @@ Copiar código
 rails db:create
 rails db:migrate
 Configuração do Docker (opcional):
-
+docker-compose build
 Se estiver usando Docker, você pode configurar e iniciar o contêiner com:
 
 bash
