@@ -1,5 +1,5 @@
 require 'grpc'
-require_relative 'lib/notification_services_pb'
+require_relative 'lib/notification_service_pb'
 
 begin
   notification_stub = Notification::NotificationService::Stub.new('localhost:50052', :this_channel_is_insecure)

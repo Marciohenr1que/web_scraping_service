@@ -9,6 +9,7 @@ gem 'faraday'
 gem 'nokogiri'
 gem 'selenium-webdriver'
 gem 'browsermob-proxy'
+gem 'active_model_serializers'
 gem 'rubocop', require: false
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"

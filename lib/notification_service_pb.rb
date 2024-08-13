@@ -4,19 +4,19 @@
 require 'grpc'
 require_relative 'notification_pb'
 
-module Notification
-  module NotificationService
+
+  module NotificationServicePb
     class Service
 
       include ::GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'notification.NotificationService'
+      self.service_name = 'NotificationPb.NotificationServicePb'
 
-      rpc :SendWebscrapingNotification, ::Notification::WebscrapingNotificationRequest, ::Notification::NotificationResponse
+      rpc :SendWebscrapingNotification, ::NotificationPb::WebscrapingNotificationRequest, ::NotificationPb::NotificationResponse
     end
 
     Stub = Service.rpc_stub_class
   end
-end
+

@@ -1,4 +1,4 @@
-require_relative '../../lib/notification_services_pb'
+require_relative '../../lib/notification_service_pb'
 
 class ScrapedDataController < ApplicationController
   def index
@@ -10,7 +10,7 @@ class ScrapedDataController < ApplicationController
     repository = ScrapedDataRepository.new
     
     # Inicialização do notification_client
-    notification_stub = Notification::NotificationService::Stub.new('localhost:50052', :this_channel_is_insecure)
+    notification_stub = NotificationServicePb::Stub.new('localhost:50052', :this_channel_is_insecure)
     
     scraping_service = WebScrapingServices.new(repository, notification_stub)
     

@@ -71,7 +71,7 @@ class WebScrapingServices
   private
 
   def notify(message)
-    request = Notification::WebscrapingNotificationRequest.new(message: message)
+    request = NotificationPb::WebscrapingNotificationRequest.new(message: message)
     response = @notification_client.send_webscraping_notification(request)
     if response.success
       Rails.logger.debug "Notification sent successfully"

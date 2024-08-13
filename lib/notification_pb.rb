@@ -10,7 +10,7 @@ descriptor_data = "\n\x12notification.proto\x12\x0cnotification\"1\n\x1eWebscrap
 pool = Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
-module Notification
+module NotificationPb
   WebscrapingNotificationRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("notification.WebscrapingNotificationRequest").msgclass
   NotificationResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("notification.NotificationResponse").msgclass
 end
